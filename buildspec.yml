@@ -8,7 +8,7 @@ phases:
     commands:
       - echo Installing source NPM dependencies...
       - npm install -g pnpm@8.6.3
-      - npm install
+      - npm ci
 
   pre_build:
     commands:
