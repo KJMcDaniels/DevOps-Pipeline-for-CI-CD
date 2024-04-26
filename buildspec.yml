@@ -8,17 +8,17 @@ phases:
     commands:
       - echo Installing source NPM dependencies...
       - npm install -g pnpm@8.6.3
-      - npm ci
+      - pnpm install
 
   pre_build:
     commands:
       - echo Running lint...
-      - npm run lint
+      - pnpm run lint
 
   build:
     commands:
       - echo Building the Next.js app...
-      - npm run dev
+      - pnpm run build
 
   post_build:
     commands:
