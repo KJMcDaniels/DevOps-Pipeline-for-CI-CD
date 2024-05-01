@@ -1,6 +1,6 @@
 #!/bin/bash
 # Install pnpm
-npm install -g pnpm@8.6.3
+npm install -g pnpm
 
 # Install dependencies using pnpm
 pnpm install
