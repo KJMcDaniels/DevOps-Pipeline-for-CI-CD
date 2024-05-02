@@ -6,7 +6,7 @@ phases:
     runtime-versions:
       nodejs: 20
     commands:
-      - echo Installing source NPM dependencies...
+      - echo Installing source PNPM dependencies...
       - npm install -g pnpm@8.6.3
       - pnpm install
 
