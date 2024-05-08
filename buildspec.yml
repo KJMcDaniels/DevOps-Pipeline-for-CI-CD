@@ -9,7 +9,7 @@ phases:
 
   build:
     commands:
-      - echo "Building Docker image tagged as my-image:$IMAGE_TAG..."
+      - echo "Building Docker image tagged as IMAGE_REPO_NAME:IMAGE_TAG..."
       - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
       - echo "Tagging the image for AWS ECR Public repository..."
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG public.ecr.aws/$ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG
