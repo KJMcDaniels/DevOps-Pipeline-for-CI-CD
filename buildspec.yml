@@ -16,6 +16,9 @@ phases:
       - echo Installing frontend dependencies
       - npm install
       - cd ..
+      - echo Installing EB CLI
+      - pip install --upgrade pip
+      - pip install awsebcli --upgrade
   pre_build:
     commands:
       - echo Building frontend
@@ -29,7 +32,7 @@ phases:
   post_build:
     commands:
       - echo Deploying to Elastic Beanstalk
-      - eb init -p node.js -r us-east-2
+      - eb init -p node.js -r us-east-2 --interactive=false
       - eb use Call-of-Duty-AI-Bot-01-514-Beans-env  
       - eb deploy
 artifacts:
