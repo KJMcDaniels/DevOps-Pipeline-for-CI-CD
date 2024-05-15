@@ -1,5 +1,5 @@
 global:
-  application_name: your-application-name
+  application_name: Call-of-Duty-AI-Bot-01-514-Beanstalk
   default_region: us-east-2
   profile: eb-cli
   workspace_type: application
