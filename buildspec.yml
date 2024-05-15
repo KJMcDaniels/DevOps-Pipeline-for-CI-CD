@@ -7,7 +7,7 @@ env:
 phases:
   install:
     runtime-versions:
-      nodejs: 14
+      nodejs: 20
     commands:
       - echo Installing backend dependencies
       - cd backend
@@ -15,17 +15,22 @@ phases:
       - cd ../frontend
       - echo Installing frontend dependencies
       - npm install
-      - cd ..
   pre_build:
     commands:
-      - echo Building frontend
+      - echo Running pre-build commands
       - cd frontend
       - npm run build
       - cd ..
   build:
     commands:
-      - echo Packaging application
-      - zip -r app.zip .
+      - echo Building the backend
+      - cd backend
+      - npm run build
+  post_build:
+    commands:
+      - echo Post-build started
+artifacts:
   files:
-    - app.zip
+    - '**/*'
+  base-directory: 'backend'
   discard-paths: yes
