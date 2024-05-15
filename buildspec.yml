@@ -15,6 +15,7 @@ phases:
       - cd ../frontend
       - echo Installing frontend dependencies
       - npm install
+      - cd ..
   pre_build:
     commands:
       - echo Building frontend
