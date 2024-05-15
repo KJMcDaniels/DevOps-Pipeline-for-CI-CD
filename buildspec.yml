@@ -30,11 +30,6 @@ phases:
     commands:
       - echo Packaging application
       - zip -r app.zip .
-  post_build:
-    commands:
-      - echo Deploying to Elastic Beanstalk
-      - eb deploy Call-of-Duty-AI-Bot-01-514-Beans-env  
-artifacts:
   files:
     - app.zip
   discard-paths: yes
