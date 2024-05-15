@@ -33,9 +33,7 @@ phases:
   post_build:
     commands:
       - echo Deploying to Elastic Beanstalk
-       - eb init -p node.js -r us-east-2 --region us-east-2 --platform "Node.js 14 running on 64bit Amazon Linux 2" --no-verify-ssl
-      - eb use Call-of-Duty-AI-Bot-01-514-Beans-env  
-      - eb deploy
+      - eb deploy Call-of-Duty-AI-Bot-01-514-Beans-env  
 artifacts:
   files:
     - app.zip
