@@ -24,7 +24,7 @@ phases:
     commands:
       - echo Running backend
       - cd backend
-      - node index.js
+      - echo no need to 'node index.js' right now
 artifacts:
   files:
     - '**/*'
