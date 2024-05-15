@@ -1,36 +1,50 @@
 version: 0.2
 
 env:
+  variables:
+    AWS_REGION: "us-east-2"
+    ECR_REPOSITORY_FRONTEND: "public.ecr.aws/z0m6w7n4/dso-ai-bot-515"
+    ECR_REPOSITORY_BACKEND: "public.ecr.aws/z0m6w7n4/dso-ai-bot-515-backend"
+    ECS_CLUSTER: "arn:aws:ecs:us-east-2:339713008336:cluster/dso-ai-bot-515-ecs-01"
+    ECS_SERVICE_FRONTEND: "arn:aws:ecs:us-east-2:339713008336:service/dso-ai-bot-515-ecs-01/ai-bot-frontend-service"
+    ECS_SERVICE_BACKEND: "arn:aws:ecs:us-east-2:339713008336:service/dso-ai-bot-515-ecs-01/ai-bot-service-backend"
   secrets-manager:
     API_KEY: "arn:aws:secretsmanager:us-east-2:339713008336:secret:prof/EBEREGIT/app-2aG1t8"
 
 phases:
   install:
     runtime-versions:
-      nodejs: 20
+      nodejs: 14
+      python: 3.8
     commands:
-      - echo Installing backend dependencies
-      - cd backend
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - $(aws ecr-public get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin public.ecr.aws)
+      - echo Installing dependencies...
+      - cd frontend
       - npm install
-      - cd ../frontend
-      - echo Installing frontend dependencies
+      - cd ../backend
       - npm install
+      - cd ..
   pre_build:
     commands:
-      - echo Running pre-build commands
-      - cd frontend
-      - npm run build
-      - cd ..
+      - echo Building Docker images...
+      - docker build -t $ECR_REPOSITORY_FRONTEND:latest ./frontend
+      - docker build -t $ECR_REPOSITORY_BACKEND:latest ./backend
+      - echo Tagging Docker images...
+      - docker tag $ECR_REPOSITORY_FRONTEND:latest public.ecr.aws/$ECR_REPOSITORY_FRONTEND:latest
+      - docker tag $ECR_REPOSITORY_BACKEND:latest public.ecr.aws/$ECR_REPOSITORY_BACKEND:latest
   build:
     commands:
-      - echo Building the backend
-      - cd backend
-      - npm run build
+      - echo Pushing Docker images to ECR...
+      - docker push public.ecr.aws/$ECR_REPOSITORY_FRONTEND:latest
+      - docker push public.ecr.aws/$ECR_REPOSITORY_BACKEND:latest
   post_build:
     commands:
-      - echo Post-build started
+      - echo Deploying to ECS...
+      - aws ecs update-service --cluster $ECS_CLUSTER --service $ECS_SERVICE_FRONTEND --force-new-deployment
+      - aws ecs update-service --cluster $ECS_CLUSTER --service $ECS_SERVICE_BACKEND --force-new-deployment
 artifacts:
   files:
     - '**/*'
-  base-directory: 'backend'
   discard-paths: yes
