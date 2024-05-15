@@ -18,7 +18,8 @@ phases:
       - cd ..
       - echo Installing EB CLI
       - pip install --upgrade pip
-      - pip install awsebcli --upgrade
+      - pip install awsebcli --upgrade --user
+      - export PATH=$PATH:$HOME/.local/bin
   pre_build:
     commands:
       - echo Building frontend
