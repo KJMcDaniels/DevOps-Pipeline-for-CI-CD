@@ -1,5 +1,5 @@
 global:
   application_name: your-application-name
-  default_region: us-east-1
+  default_region: us-east-2
   profile: eb-cli
   workspace_type: application
