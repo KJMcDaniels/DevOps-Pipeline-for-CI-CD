@@ -7,7 +7,7 @@ env:
 phases:
   install:
     runtime-versions:
-      nodejs: 20
+      nodejs: 14
     commands:
       - echo Installing backend dependencies
       - cd backend
@@ -18,7 +18,6 @@ phases:
   pre_build:
     commands:
       - echo Running pre-build commands
-      - cd frontend
       - npm run build
       - cd ..
   build:
