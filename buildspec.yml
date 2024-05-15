@@ -1,8 +1,6 @@
 version: 0.2
 
 env:
-  variables:
-    # Define environment variables if needed
   secrets-manager:
     API_KEY: "arn:aws:secretsmanager:us-east-2:339713008336:secret:prof/EBEREGIT/app-2aG1t8"
 
