@@ -18,15 +18,20 @@ phases:
   pre_build:
     commands:
       - echo Building frontend
+      - cd frontend
       - npm run build
       - cd ..
   build:
     commands:
-      - echo Running backend
-      - cd backend
-      - echo no need to 'node index.js' right now
+      - echo Packaging application
+      - zip -r app.zip .
+  post_build:
+    commands:
+      - echo Deploying to Elastic Beanstalk
+      - eb init -p node.js -r us-east-2
+      - eb use Call-of-Duty-AI-Bot-01-514-Beans-env  
+      - eb deploy
 artifacts:
   files:
-    - '**/*'
-  base-directory: 'backend'
+    - app.zip
   discard-paths: yes
