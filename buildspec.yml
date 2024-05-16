@@ -6,8 +6,8 @@ env:
     ECR_REPOSITORY_FRONTEND: "z0m6w7n4/dso-ai-bot-515"
     ECR_REPOSITORY_BACKEND: "z0m6w7n4/dso-ai-bot-515-backend"
     ECS_CLUSTER: "arn:aws:ecs:us-east-2:339713008336:cluster/dso-ai-bot-515-ecs-01"
-    ECS_SERVICE_FRONTEND: "arn:aws:ecs:us-east-2:339713008336:service/dso-ai-bot-515-ecs-01/ai-bot-frontend-service"
-    ECS_SERVICE_BACKEND: "arn:aws:ecs:us-east-2:339713008336:service/dso-ai-bot-515-ecs-01/ai-bot-service-backend"
+    ECS_SERVICE_FRONTEND: "ai-bot-frontend-service"
+    ECS_SERVICE_BACKEND: "ai-bot-service-backend"
   secrets-manager:
     API_KEY: "arn:aws:secretsmanager:us-east-2:339713008336:secret:prof/EBEREGIT/app-2aG1t8"
 
