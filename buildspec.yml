@@ -28,6 +28,9 @@ artifacts:
   # include all files required to run the application
   files:
     - backend/**/*
-    - frontend/**/*
+    - frontend/dist/**/*
+    - frontend/public/**/*
+    - frontend/src/**/*
+    - frontend/package.json
     - appspec.yml
     - scripts/**/*
