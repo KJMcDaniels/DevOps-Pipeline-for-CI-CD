@@ -1,50 +1,30 @@
 version: 0.2
 
-env:
-  variables:
-    AWS_REGION: "us-east-2"
-    ECR_REPOSITORY_FRONTEND: "z0m6w7n4/dso-ai-bot-515"
-    ECR_REPOSITORY_BACKEND: "z0m6w7n4/dso-ai-bot-515-backend"
-    ECS_CLUSTER: "arn:aws:ecs:us-east-2:339713008336:cluster/dso-ai-bot-515-ecs-01"
-    ECS_SERVICE_FRONTEND: "ai-bot-frontend-service"
-    ECS_SERVICE_BACKEND: "ai-bot-service-backend"
-  secrets-manager:
-    API_KEY: "arn:aws:secretsmanager:us-east-2:339713008336:secret:prof/EBEREGIT/app-2aG1t8"
-
 phases:
   install:
     runtime-versions:
-      nodejs: 14
-      python: 3.8
+      nodejs: 20
+   
     commands:
-      - echo Logging in to Amazon ECR...
-      - aws --version
-      - $(aws ecr-public get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin public.ecr.aws)
-      - echo Installing dependencies...
-      - cd frontend
-      - npm install
-      - cd ../backend
-      - npm install
-      - cd ..
-  pre_build:
-    commands:
-      - echo Building Docker images...
-      - docker build -t $ECR_REPOSITORY_FRONTEND:latest ./frontend
-      - docker build -t $ECR_REPOSITORY_BACKEND:latest ./backend
-      - echo Tagging Docker images...
-      - docker tag $ECR_REPOSITORY_FRONTEND:latest public.ecr.aws/$ECR_REPOSITORY_FRONTEND:latest
-      - docker tag $ECR_REPOSITORY_BACKEND:latest public.ecr.aws/$ECR_REPOSITORY_BACKEND:latest
+        - echo Installing dependencies...
+        - cd frontend
+        - npm install
+        - cd ../backend
+        - npm install
+        - cd ..
+       
   build:
     commands:
-      - echo Pushing Docker images to ECR...
-      - docker push public.ecr.aws/$ECR_REPOSITORY_FRONTEND:latest
-      - docker push public.ecr.aws/$ECR_REPOSITORY_BACKEND:latest
-  post_build:
-    commands:
-      - echo Deploying to ECS...
-      - aws ecs update-service --cluster $ECS_CLUSTER --service $ECS_SERVICE_FRONTEND --force-new-deployment
-      - aws ecs update-service --cluster $ECS_CLUSTER --service $ECS_SERVICE_BACKEND --force-new-deployment
+        - echo Running build script...
+        - npm run build
+     
 artifacts:
+  # include all files required to run the application
   files:
-    - '**/*'
-  discard-paths: yes
+    - backend/package.json
+    - backend/index.js
+    - frontend/public/**/*
+    - frontend/src/**/*
+    - frontend/package.json
+    - appspec.yml
+    - frontend/scripts/**/*
