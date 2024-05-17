@@ -35,6 +35,8 @@ const getSecret = async () => {
     );
     const secret = JSON.parse(response.SecretString);
     apiKey = secret.API_KEY; // Assuming the secret contains a key named 'API_KEY'
+    console.log("Successfully retrieved API key from Secrets Manager.");
+    console.log(`Retrieved API Key: ${apiKey}`);
   } catch (error) {
     console.error("Error retrieving secret:", error);
     throw error;
