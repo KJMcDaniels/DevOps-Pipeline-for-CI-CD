@@ -21,6 +21,7 @@ phases:
   build:
     commands:
         - echo Running build script...
+        - cd frontend
         - npm run build
      
 artifacts:
