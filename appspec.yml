@@ -1,0 +1,26 @@
+version: 0.0.1
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/deployment
+
+hooks:
+  BeforeInstall:
+    - location: scripts/stop_container.sh
+      timeout: 300
+      runas: ec2-user
+
+  AfterInstall:
+    - location: scripts/pull_latest_image.sh
+      timeout: 300
+      runas: ec2-user
+
+  ApplicationStart:
+    - location: scripts/start_container.sh
+      timeout: 300
+      runas: ec2-user
+
+  ValidateService:
+    - location: scripts/validate_service.sh
+      timeout: 300
+      runas: ec2-user
