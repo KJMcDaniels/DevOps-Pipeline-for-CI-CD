@@ -27,4 +27,9 @@ phases:
 artifacts:
   # include all files required to run the application
   files:
-    - '**/*'
+    - backend/**/*
+    - frontend/public/**/*
+    - frontend/src/**/*
+    - frontend/package.json
+    - appspec.yml
+    - scripts/**/*
