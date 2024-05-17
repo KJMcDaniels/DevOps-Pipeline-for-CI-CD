@@ -20,5 +20,11 @@ fi
 systemctl -l enable nginx
 systemctl -l start nginx
 
-# Start the Node.js server
+# Stop any existing PM2 process running index.js
+pm2 stop index.js || true
+
+# Delete any existing PM2 process running index.js
+pm2 delete index.js || true
+
+# Start the Node.js server using PM2
 pm2 start index.js
