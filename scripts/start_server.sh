@@ -21,4 +21,4 @@ systemctl -l enable nginx
 systemctl -l start nginx
 
 # Start the Node.js server
-node index.js
+pm2 start index.js
