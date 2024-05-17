@@ -11,4 +11,5 @@ if [ "$STATUS_CODE" -ne 200 ]; then
   exit 1
 else
   echo "Service is running successfully"
+  exit 0
 fi
