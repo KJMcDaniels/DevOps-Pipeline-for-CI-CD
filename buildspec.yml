@@ -9,15 +9,15 @@ phases:
 
   build:
     commands:
-      - echo "Building Docker image tagged as IMAGE_REPO_NAME:IMAGE_TAG..."
-      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
-      - echo "Tagging the image for AWS ECR Public repository..."
-      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG public.ecr.aws/$ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG
+      # - echo "Building Docker image tagged as IMAGE_REPO_NAME:IMAGE_TAG..."
+      # - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+      # - echo "Tagging the image for AWS ECR Public repository..."
+      # - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG public.ecr.aws/$ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG
 
   post_build:
     commands:
-      - echo "Pushing the Docker image to AWS ECR Public..."
-      - docker push public.ecr.aws/$ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG
+      # - echo "Pushing the Docker image to AWS ECR Public..."
+      # - docker push public.ecr.aws/$ALIAS/$IMAGE_REPO_NAME:$IMAGE_TAG
       - echo Writing image definitions file...
       - printf '[{"name":"DevSecOps-App-01","imageUri":"public.ecr.aws/%s/%s:%s"}]' $ALIAS $IMAGE_REPO_NAME $IMAGE_TAG > imagedefinitions.json
 
