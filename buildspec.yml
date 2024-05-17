@@ -32,4 +32,4 @@ artifacts:
     - frontend/src/**/*
     - frontend/package.json
     - appspec.yml
-    - frontend/scripts/**/*
+    - scripts/**/*
