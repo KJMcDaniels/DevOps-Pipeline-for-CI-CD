@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # navigate to app folder
-cd /app
+cd /app/frontend
 
 # install dependencies
 npm install
