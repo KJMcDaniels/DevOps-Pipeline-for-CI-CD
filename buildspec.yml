@@ -1,5 +1,10 @@
 version: 0.2
 
+env:
+  secrets-manager:
+  # Need to update with correct secret ARN
+    API_KEY: "arn:aws:secretsmanager:us-east-2:339713008336:secret:prof/EBEREGIT/app-2aG1t8"
+
 phases:
   install:
     runtime-versions:
