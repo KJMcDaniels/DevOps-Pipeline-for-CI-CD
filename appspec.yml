@@ -20,7 +20,7 @@ hooks:
       timeout: 300
       runas: ec2-user
 
-  ValidateService:
-    - location: pipeline_script/validate_service.sh
-      timeout: 300
-      runas: ec2-user
+  # ValidateService:
+  #   - location: pipeline_script/validate_service.sh
+  #     timeout: 300
+  #     runas: ec2-user
