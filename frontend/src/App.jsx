@@ -15,23 +15,23 @@ function App() {
 
     let msgs = chats;
     msgs.push({ role: "user", content: message });
-    setChats([...msgs]);
+    setChats(msgs);
 
     setMessage("");
 
-    fetch("/api/", {
+    fetch("http://localhost:8000/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        chats: msgs,
+        chats,
       }),
     })
       .then((response) => response.json())
       .then((data) => {
         msgs.push(data.output);
-        setChats([...msgs]);
+        setChats(msgs);
         setIsTyping(false);
         scrollTo(0, 1e10);
       })
