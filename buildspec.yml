@@ -25,4 +25,4 @@ artifacts:
   files:
     - imagedefinitions.json
     - appspec.yml
-    - scripts/*
+    - pipeline_script/*
