@@ -1,13 +1,31 @@
 version: 0.0
-os: linux
+
+os: linux 
+
 files:
   - source: /
-    destination: /var
+    destination: /app
+    overwrite: true
+
+permissions:
+  - object: /
+    pattern: "**"
+    owner: ec2-user
+    group: ec2-user
+
 hooks:
+
   BeforeInstall:
-    - location: scripts/install_dependencies
+    - location: scripts/before_install.sh
       timeout: 300
       runas: root
-    - location: scripts/start_server
+
+  AfterInstall:
+    - location: scripts/after_install.sh
+      timeout: 300
+      runas: root
+
+  ApplicationStart:
+    - location: scripts/start_server.sh     
       timeout: 300
       runas: root

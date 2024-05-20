@@ -1,34 +1,36 @@
-#buildsepc file for AWS CodeBuild
 version: 0.2
+
+env:
+  secrets-manager:
+  # Need to update with correct secret ARN
+    API_KEY: "arn:aws:secretsmanager:us-east-2:339713008336:secret:prof/EBEREGIT/app-2aG1t8"
 
 phases:
   install:
     runtime-versions:
       nodejs: 20
+   
     commands:
-      - echo Installing source PNPM dependencies...
-      - npm install -g pnpm@8.6.3
-      - pnpm install
-
-  pre_build:
-    commands:
-      - echo Running lint...
-      - pnpm run lint
-
+        - echo Installing dependencies...
+        - cd frontend
+        - npm install
+        - cd ../backend
+        - npm install
+        - cd ..
+       
   build:
     commands:
-      - echo Building the Next.js app...
-      - pnpm run build
-
-  post_build:
-    commands:
-      - echo Build completed on `date`
-
+        - echo Running build script...
+        - cd frontend
+        - npm run build
+     
 artifacts:
+  # include all files required to run the application
   files:
-    - '**/*'
-  base-directory: .next
-
-cache:
-  paths:
-    - 'node_modules/**/*'
+    - backend/**/*
+    - frontend/dist/**/*
+    - frontend/public/**/*
+    - frontend/src/**/*
+    - frontend/package.json
+    - appspec.yml
+    - scripts/**/*
