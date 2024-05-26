@@ -14,7 +14,7 @@ phases:
       nodejs: 20
     commands:
       - apt-get update
-      - apt-get install -y openjdk-17-jdk
+      - apt-get install -y openjdk-17-jdk-headless
       - update-alternatives --install /usr/bin/java java /usr/lib/jvm/java-17-openjdk-amd64/bin/java 1
       - update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
       - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
@@ -41,6 +41,8 @@ phases:
       - npm run build
       - cd ..
       - echo Running SonarQube Scanner...
+      - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+      - export PATH=$JAVA_HOME/bin:$PATH
       - sonar-scanner -Dsonar.projectKey=$Project -Dsonar.organization=$Organization -Dsonar.host.url=$HOST -Dsonar.login=$LOGIN
       - sleep 5
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project > result.json
