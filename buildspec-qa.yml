@@ -28,6 +28,7 @@ phases:
       - echo "Setting up SonarQube Scanner..."
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
       - unzip sonar-scanner-cli-5.0.1.3006-linux.zip -d .
+      - export PATH=$(pwd)/sonar-scanner-5.0.1.3006-linux/bin:$PATH
 
   build:
     commands:
@@ -37,8 +38,21 @@ phases:
       - npm run build
       - cd ..
       - echo "Running SonarQube Scanner..."
-      - export PATH=$(pwd)/sonar-scanner-5.0.1.3006-linux/bin:$PATH
       - sonar-scanner -Dsonar.projectKey=$Project -Dsonar.organization=$Organization -Dsonar.host.url=$HOST -Dsonar.login=$LOGIN
+
+  post_build:
+    commands:
+      - echo "Checking SonarQube Quality Gate status..."
+      - |
+        # Fetch the quality gate status from SonarQube
+        STATUS=$(curl -s -u $LOGIN: $HOST/api/qualitygates/project_status?projectKey=$Project | jq -r '.projectStatus.status')
+        echo "Quality Gate status: $STATUS"
+        if [ "$STATUS" != "OK" ]; then
+          echo "Quality Gate failed. Exiting with status 1."
+          exit 1
+        else
+          echo "Quality Gate passed."
+        fi
 
 artifacts:
   files:
