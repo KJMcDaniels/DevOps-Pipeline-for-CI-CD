@@ -14,7 +14,7 @@ phases:
   install:
     runtime-versions:
       nodejs: 20
-      java: openjdk8
+      #java: openjdk8
   pre_build:
     commands:
     #SonarCloud
