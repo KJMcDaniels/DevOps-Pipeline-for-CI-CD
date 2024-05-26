@@ -43,7 +43,7 @@ phases:
       - echo Running SonarQube Scanner...
       - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
       - export PATH=$JAVA_HOME/bin:$PATH
-      - sonar-scanner -Dsonar.projectKey=$Project -Dsonar.organization=$Organization -Dsonar.host.url=$HOST -Dsonar.login=$LOGIN
+      - sonar-scanner -Dsonar.projectKey=$Project -Dsonar.organization=$Organization -Dsonar.host.url=$HOST -Dsonar.login=$LOGIN -X
       - sleep 5
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project > result.json
       - cat result.json
