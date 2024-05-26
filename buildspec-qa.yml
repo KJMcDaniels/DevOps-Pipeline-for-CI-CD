@@ -16,7 +16,7 @@ phases:
     commands:
       - echo "Installing dependencies..."
       - apt-get update
-      - apt-get install -y openjdk-17-jdk
+      - apt-get install -y openjdk-17-jdk wget unzip
       - update-alternatives --install /usr/bin/java java /usr/lib/jvm/java-17-openjdk-amd64/bin/java 1
       - update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
       - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
@@ -26,9 +26,12 @@ phases:
   pre_build:
     commands:
       - echo "Setting up SonarQube Scanner..."
-      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
-      - unzip sonar-scanner-cli-5.0.1.3006-linux.zip -d .
-      - export PATH=$(pwd)/sonar-scanner-5.0.1.3006-linux/bin:$PATH
+      - wget -qO- https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip | unzip -d .
+      - export PATH=$(pwd)/sonar-scanner-cli-5.0.1.3006-linux/bin:$PATH
+      - echo "Setting up OWASP Dependency-Check..."
+      - wget https://github.com/jeremylong/DependencyCheck/releases/download/v6.5.3/dependency-check-6.5.3-release.zip
+      - unzip dependency-check-6.5.3-release.zip -d dependency-check
+      - export PATH=$(pwd)/dependency-check/bin:$PATH
 
   build:
     commands:
@@ -37,6 +40,8 @@ phases:
       - npm install
       - npm run build
       - cd ..
+      - echo "Running OWASP Dependency-Check..."
+      - dependency-check/bin/dependency-check.sh --project "MyProject" --scan . --out dependency-check-report --format HTML
       - echo "Running SonarQube Scanner..."
       - sonar-scanner -Dsonar.projectKey=$Project -Dsonar.organization=$Organization -Dsonar.host.url=$HOST -Dsonar.login=$LOGIN
 
@@ -63,3 +68,4 @@ artifacts:
     - frontend/package.json
     - appspec.yml
     - scripts/**/*
+    - dependency-check-report/**/*
