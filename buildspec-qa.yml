@@ -5,10 +5,10 @@ env:
   # Need to update with correct secret ARN
     API_KEY: "arn:aws:secretsmanager:us-east-2:339713008336:secret:prof/EBEREGIT/app-2aG1t8"
   # SonarCloud
-    LOGIN: prod/sonar:sonartoken
-    HOST: prod/sonar:HOST
-    Organization: prod/sonar:Organization
-    Project: prod/sonar:Project
+    LOGIN: arn:aws:secretsmanager:us-east-2:339713008336:secret:qa/AIBot/SonarCloud-TPr0ry:sonartoken
+    HOST: arn:aws:secretsmanager:us-east-2:339713008336:secret:qa/AIBot/SonarCloud-TPr0ry:HOST
+    Organization: arn:aws:secretsmanager:us-east-2:339713008336:secret:qa/AIBot/SonarCloud-TPr0ry:Organization
+    Project: arn:aws:secretsmanager:us-east-2:339713008336:secret:qa/AIBot/SonarCloud-TPr0ry:Project
 
 phases:
   install:
