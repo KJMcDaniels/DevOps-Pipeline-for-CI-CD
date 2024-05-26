@@ -3,37 +3,32 @@ version: 0.2
 env:
   secrets-manager:
     API_KEY: "arn:aws:secretsmanager:us-east-2:339713008336:secret:prof/EBEREGIT/app-2aG1t8"
-    LOGIN: arn:aws:secretsmanager:us-east-2:339713008336:secret:qa/AIBot/SonarCloud-TPr0ry:sonartoken
-    HOST: arn:aws:secretsmanager:us-east-2:339713008336:secret:qa/AIBot/SonarCloud-TPr0ry:HOST
-    Organization: arn:aws:secretsmanager:us-east-2:339713008336:secret:qa/AIBot/SonarCloud-TPr0ry:Organization
-    Project: arn:aws:secretsmanager:us-east-2:339713008336:secret:qa/AIBot/SonarCloud-TPr0ry:Project
+    LOGIN: "arn:aws:secretsmanager:us-east-2:339713008336:secret:qa/AIBot/SonarCloud-TPr0ry:sonartoken"
+    HOST: "arn:aws:secretsmanager:us-east-2:339713008336:secret:qa/AIBot/SonarCloud-TPr0ry:HOST"
+    Organization: "arn:aws:secretsmanager:us-east-2:339713008336:secret:qa/AIBot/SonarCloud-TPr0ry:Organization"
+    Project: "arn:aws:secretsmanager:us-east-2:339713008336:secret:qa/AIBot/SonarCloud-TPr0ry:Project"
 
 phases:
   install:
     runtime-versions:
       nodejs: 20
+      java: corretto17
     commands:
-      - apt-get update
-      - apt-get install -y openjdk-17-jdk-headless
-      - update-alternatives --install /usr/bin/java java /usr/lib/jvm/java-17-openjdk-amd64/bin/java 1
-      - update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
-      - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-      - export PATH=$JAVA_HOME/bin:$PATH
-      - java -version  # Verify the installed version
-
-  pre_build:
-    commands:
+      - apt-get update -y
       - apt-get install -y jq
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
       - unzip sonar-scanner-cli-4.6.2.2472-linux.zip
       - export PATH=$(pwd)/sonar-scanner-4.6.2.2472-linux/bin:$PATH
+  pre_build:
+    commands:
       - echo Installing dependencies...
       - cd frontend
       - npm install
       - cd ../backend
       - npm install
       - cd ..
-
+      - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+      - export PATH=$JAVA_HOME/bin:$PATH
   build:
     commands:
       - echo Running build script...
@@ -41,14 +36,11 @@ phases:
       - npm run build
       - cd ..
       - echo Running SonarQube Scanner...
-      - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-      - export PATH=$JAVA_HOME/bin:$PATH
-      - sonar-scanner -Dsonar.projectKey=$Project -Dsonar.organization=$Organization -Dsonar.host.url=$HOST -Dsonar.login=$LOGIN -X
+      - sonar-scanner -Dsonar.projectKey=$Project -Dsonar.organization=$Organization -Dsonar.host.url=$HOST -Dsonar.login=$LOGIN
       - sleep 5
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project > result.json
       - cat result.json
-      - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
-
+      - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ]; then exit 1; fi
 artifacts:
   files:
     - backend/**/*
