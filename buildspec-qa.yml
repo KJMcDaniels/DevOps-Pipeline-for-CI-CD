@@ -23,7 +23,7 @@ phases:
       - export PATH=$JAVA_HOME/bin:$PATH
       - java -version
       - echo "Installing OWASP Dependency-Check..."
-      - wget https://github.com/jeremylong/DependencyCheck/releases/tag/v9.2.0/dependency-check-9.2.0-release.zip
+      - wget https://github.com/jeremylong/DependencyCheck/releases/download/v9.2.0/dependency-check-9.2.0-release.zip
       - unzip dependency-check-9.2.0-release.zip -d /opt
       - ln -s /opt/dependency-check/bin/dependency-check.sh /usr/local/bin/dependency-check
 
