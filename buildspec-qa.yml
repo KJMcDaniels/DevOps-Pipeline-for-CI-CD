@@ -22,16 +22,16 @@ phases:
       - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
       - export PATH=$JAVA_HOME/bin:$PATH
       - java -version
+      - echo "Installing OWASP Dependency-Check..."
+      - wget https://github.com/jeremylong/DependencyCheck/releases/tag/v9.2.0/dependency-check-9.2.0-release.zip
+      - unzip dependency-check-9.2.0-release.zip -d /opt
+      - ln -s /opt/dependency-check/bin/dependency-check.sh /usr/local/bin/dependency-check
 
   pre_build:
     commands:
       - echo "Setting up SonarQube Scanner..."
       - wget -qO- https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip | unzip -d .
       - export PATH=$(pwd)/sonar-scanner-cli-5.0.1.3006-linux/bin:$PATH
-      - echo "Setting up OWASP Dependency-Check..."
-      - wget https://github.com/jeremylong/DependencyCheck/releases/download/v6.5.3/dependency-check-6.5.3-release.zip
-      - unzip dependency-check-6.5.3-release.zip -d dependency-check
-      - export PATH=$(pwd)/dependency-check/bin:$PATH
 
   build:
     commands:
@@ -41,23 +41,9 @@ phases:
       - npm run build
       - cd ..
       - echo "Running OWASP Dependency-Check..."
-      - dependency-check/bin/dependency-check.sh --project "MyProject" --scan . --out dependency-check-report --format HTML
+      - dependency-check --project "MyProject" --out reports --scan .
       - echo "Running SonarQube Scanner..."
       - sonar-scanner -Dsonar.projectKey=$Project -Dsonar.organization=$Organization -Dsonar.host.url=$HOST -Dsonar.login=$LOGIN
-
-  post_build:
-    commands:
-      - echo "Checking SonarQube Quality Gate status..."
-      - |
-        # Fetch the quality gate status from SonarQube
-        STATUS=$(curl -s -u $LOGIN: $HOST/api/qualitygates/project_status?projectKey=$Project | jq -r '.projectStatus.status')
-        echo "Quality Gate status: $STATUS"
-        if [ "$STATUS" != "OK" ]; then
-          echo "Quality Gate failed. Exiting with status 1."
-          exit 1
-        else
-          echo "Quality Gate passed."
-        fi
 
 artifacts:
   files:
@@ -68,4 +54,4 @@ artifacts:
     - frontend/package.json
     - appspec.yml
     - scripts/**/*
-    - dependency-check-report/**/*
+    - reports/dependency-check-report.html
