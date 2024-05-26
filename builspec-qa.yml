@@ -1,0 +1,60 @@
+version: 0.2
+
+env:
+  secrets-manager:
+  # Need to update with correct secret ARN
+    API_KEY: "arn:aws:secretsmanager:us-east-2:339713008336:secret:prof/EBEREGIT/app-2aG1t8"
+  # SonarCloud
+    LOGIN: prod/sonar:sonartoken
+    HOST: prod/sonar:HOST
+    Organization: prod/sonar:Organization
+    Project: prod/sonar:Project
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+      java: openjdk8
+  pre_build:
+    commands:
+    #SonarCloud
+        - apt-get update
+        - apt-get install -y jq
+        - wget http://www-eu.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
+        - tar xzf apache-maven-3.5.4-bin.tar.gz
+        - ln -s apache-maven-3.5.4 maven
+        - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
+        - unzip ./sonar-scanner-cli-3.3.0.1492-linux.zip
+        - export PATH=$PATH:/sonar-scanner-3.3.0.1492-linux/bin/
+        #Normal stuff
+        - echo Installing dependencies...
+        - cd frontend
+        - npm install
+        - cd ../backend
+        - npm install
+        - cd ..
+       
+  build:
+    commands:
+        - echo Running build script...
+        - cd frontend
+        - npm run build
+        #sonarcloud
+        - cd ..
+        - mvn test     
+        - mvn sonar:sonar -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$Project -Dsonar.organization=$Organization
+        - sleep 5
+        - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project >result.json
+        - cat result.json
+        - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
+     
+artifacts:
+  # include all files required to run the application
+  files:
+    - backend/**/*
+    - frontend/dist/**/*
+    - frontend/public/**/*
+    - frontend/src/**/*
+    - frontend/package.json
+    - appspec.yml
+    - scripts/**/*
