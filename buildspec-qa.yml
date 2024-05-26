@@ -12,10 +12,13 @@ phases:
   install:
     runtime-versions:
       nodejs: 20
+    commands:
+      - apt-get update
+      - apt-get install -y openjdk-17-jdk
+      - update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
 
   pre_build:
     commands:
-      - apt-get update
       - apt-get install -y jq
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
       - unzip sonar-scanner-cli-4.6.2.2472-linux.zip
