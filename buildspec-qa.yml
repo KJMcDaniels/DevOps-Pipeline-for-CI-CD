@@ -46,7 +46,7 @@ phases:
       - cd ..
       - echo "Running OWASP Dependency-Check..."
       - mkdir -p reports
-      - /opt/dependency-check/bin/dependency-check.sh --project "MyProject" --format "ALL" --out reports --scan . --nvdApiKey $NVD_API_KEY --nvd.api.delay=6000
+      - /opt/dependency-check/bin/dependency-check.sh --project "MyProject" --format "ALL" --out reports --scan . --nvdApiKey $NVD_API_KEY
       - echo "Running SonarQube Scanner..."
       - export PATH=$(pwd)/sonar-scanner-5.0.1.3006-linux/bin:$PATH
       - sonar-scanner -Dsonar.projectKey=$Project -Dsonar.organization=$Organization -Dsonar.host.url=$HOST -Dsonar.login=$LOGIN -Dsonar.exclusions=reports/**
