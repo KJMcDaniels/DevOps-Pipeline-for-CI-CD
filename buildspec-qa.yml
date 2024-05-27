@@ -46,7 +46,6 @@ phases:
       - cd ..
       - echo "Running OWASP Dependency-Check..."
       - mkdir -p reports
-      - export NVD_API_KEY=$(aws secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:us-east-2:339713008336:secret:qa/AIBot/DependencyCheck-gU8EYi:NVD_API_KEY --query SecretString --output text)
       - /opt/dependency-check/bin/dependency-check.sh --project "MyProject" --format "ALL" --out reports --scan . --nvdApiKey $NVD_API_KEY --nvd.api.delay=6000
       - echo "Running SonarQube Scanner..."
       - export PATH=$(pwd)/sonar-scanner-5.0.1.3006-linux/bin:$PATH
