@@ -41,7 +41,7 @@ phases:
       - npm run build
       - cd ..
       - echo "Running OWASP Dependency-Check..."
-      - dependency-check --project "MyProject" --out reports --scan .
+      - dependency-check.sh --project "MyProject" --out reports --scan .
       - echo "Running SonarQube Scanner..."
       - sonar-scanner -Dsonar.projectKey=$Project -Dsonar.organization=$Organization -Dsonar.host.url=$HOST -Dsonar.login=$LOGIN
 
