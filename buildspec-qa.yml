@@ -30,8 +30,8 @@ phases:
   pre_build:
     commands:
       - echo "Setting up SonarQube Scanner..."
-      - wget -qO- https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip | unzip -d .
-      - export PATH=$(pwd)/sonar-scanner-cli-5.0.1.3006-linux/bin:$PATH
+      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
+      - unzip sonar-scanner-cli-5.0.1.3006-linux.zip -d .
 
   build:
     commands:
