@@ -32,6 +32,7 @@ phases:
       - echo "Setting up SonarQube Scanner..."
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
       - unzip sonar-scanner-cli-5.0.1.3006-linux.zip -d .
+      - export PATH=$(pwd)/sonar-scanner-cli-5.0.1.3006-linux/bin:$PATH
 
   build:
     commands:
@@ -41,7 +42,7 @@ phases:
       - npm run build
       - cd ..
       - echo "Running OWASP Dependency-Check..."
-      - dependency-check.sh --project "MyProject" --format "ALL" --out reports --scan .
+      - /opt/dependency-check/bin/dependency-check.sh --project "MyProject" --format "ALL" --out reports --scan .
       - echo "Running SonarQube Scanner..."
       - sonar-scanner -Dsonar.projectKey=$Project -Dsonar.organization=$Organization -Dsonar.host.url=$HOST -Dsonar.login=$LOGIN
 
