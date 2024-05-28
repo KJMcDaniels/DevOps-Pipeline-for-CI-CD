@@ -58,6 +58,7 @@ phases:
       - aws s3 cp reports/dependency-check-report.xml s3://cod-devsecops-ai-bot-reports/dependency-check-report.xml
       - aws s3 cp reports/dependency-check-report.json s3://cod-devsecops-ai-bot-reports/dependency-check-report.json
       - aws s3 cp sonar-report.html s3://cod-devsecops-ai-bot-reports/sonar-report.html
+      - if [ -f sonar-report.html ]; then aws s3 cp sonar-report.html s3://cod-devsecops-ai-bot-reports/sonar-report.html; else echo "Sonar report not found, skipping upload"; fi
 
 artifacts:
   files:
