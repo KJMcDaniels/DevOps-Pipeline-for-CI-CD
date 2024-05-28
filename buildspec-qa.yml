@@ -51,6 +51,14 @@ phases:
       - export PATH=$(pwd)/sonar-scanner-5.0.1.3006-linux/bin:$PATH
       - sonar-scanner -Dsonar.projectKey=$Project -Dsonar.organization=$Organization -Dsonar.host.url=$HOST -Dsonar.login=$LOGIN -Dsonar.exclusions=reports/**
 
+  post_build:
+    commands:
+      - echo "Uploading reports to S3..."
+      - aws s3 cp reports/dependency-check-report.html arn:aws:s3:::cod-devsecops-ai-bot-reports/dependency-check-report.html
+      - aws s3 cp reports/dependency-check-report.xml arn:aws:s3:::cod-devsecops-ai-bot-reports/dependency-check-report.xml
+      - aws s3 cp reports/dependency-check-report.json arn:aws:s3:::cod-devsecops-ai-bot-reports/dependency-check-report.json
+      - aws s3 cp sonar-report.html arn:aws:s3:::cod-devsecops-ai-bot-reports/sonar-report.html
+
 artifacts:
   files:
     - backend/**/*
