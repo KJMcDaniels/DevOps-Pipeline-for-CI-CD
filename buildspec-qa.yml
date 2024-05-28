@@ -54,10 +54,10 @@ phases:
   post_build:
     commands:
       - echo "Uploading reports to S3..."
-      - aws s3 cp reports/dependency-check-report.html arn:aws:s3:::cod-devsecops-ai-bot-reports/dependency-check-report.html
-      - aws s3 cp reports/dependency-check-report.xml arn:aws:s3:::cod-devsecops-ai-bot-reports/dependency-check-report.xml
-      - aws s3 cp reports/dependency-check-report.json arn:aws:s3:::cod-devsecops-ai-bot-reports/dependency-check-report.json
-      - aws s3 cp sonar-report.html arn:aws:s3:::cod-devsecops-ai-bot-reports/sonar-report.html
+      - aws s3 cp reports/dependency-check-report.html s3://cod-devsecops-ai-bot-reports/dependency-check-report.html
+      - aws s3 cp reports/dependency-check-report.xml s3://cod-devsecops-ai-bot-reports/dependency-check-report.xml
+      - aws s3 cp reports/dependency-check-report.json s3://cod-devsecops-ai-bot-reports/dependency-check-report.json
+      - aws s3 cp sonar-report.html s3://cod-devsecops-ai-bot-reports/sonar-report.html
 
 artifacts:
   files:
