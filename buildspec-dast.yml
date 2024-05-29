@@ -16,13 +16,13 @@ phases:
       - npm install
       - cd ..
       - echo Installing OWASP ZAP...
-      - wget https://github.com/zaproxy/zaproxy/releases/download/v2.10.0/ZAP_2_10_0_unix.sh
-      - chmod +x ZAP_2_10_0_unix.sh
-      - ./ZAP_2_10_0_unix.sh -q -dir /home/zap
+      - wget https://github.com/zaproxy/zaproxy/releases/download/v2.15.0/ZAP_2_15_0_unix.sh
+      - chmod +x ZAP_2_15_0_unix.sh
+      - ./ZAP_2_15_0_unix.sh -q -dir /home/zap
   pre_build:
     commands:
       - echo Starting OWASP ZAP...
-      - /home/zap/ZAP_2_10_0/zap.sh -daemon -config api.disablekey=true
+      - /home/zap/ZAP_2_15_0/zap.sh -daemon -config api.disablekey=true
   build:
     commands:
       - echo Running build script...
@@ -30,11 +30,11 @@ phases:
       - npm run build
       - cd ..
       - echo Running OWASP ZAP scan...
-      - /home/zap/ZAP_2_10_0/zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' http://your-application-url
+      - /home/zap/ZAP_2_15_0/zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' http://your-application-url
   post_build:
     commands:
       - echo Post build actions...
-      - /home/zap/ZAP_2_10_0/zap-cli report -o zap-report.html -f html
+      - /home/zap/ZAP_2_15_0/zap-cli report -o zap-report.html -f html
 artifacts:
   files:
     - backend/**/*
