@@ -2,6 +2,7 @@ version: 0.2
 
 env:
   secrets-manager:
+  # Need to update with correct secret ARN
     API_KEY: "arn:aws:secretsmanager:us-east-2:339713008336:secret:prof/EBEREGIT/app-2aG1t8"
 
 phases:
@@ -9,33 +10,21 @@ phases:
     runtime-versions:
       nodejs: 20
     commands:
-      - echo Installing dependencies...
-      - cd frontend
-      - npm install
-      - cd ../backend
-      - npm install
-      - cd ..
-      - echo Installing OWASP ZAP...
-      - wget https://github.com/zaproxy/zaproxy/releases/download/v2.10.0/ZAP_2_10_0_unix.sh
-      - chmod +x ZAP_2_10_0_unix.sh
-      - ./ZAP_2_10_0_unix.sh -q -dir /home/zap
-  pre_build:
-    commands:
-      - echo Starting OWASP ZAP...
-      - /home/zap/ZAP_2_10_0/zap.sh -daemon -config api.disablekey=true
+        - echo Installing dependencies...
+        - cd frontend
+        - npm install
+        - cd ../backend
+        - npm install
+        - cd ..
+       
   build:
     commands:
-      - echo Running build script...
-      - cd frontend
-      - npm run build
-      - cd ..
-      - echo Running OWASP ZAP scan...
-      - /home/zap/ZAP_2_10_0/zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' http://your-application-url
-  post_build:
-    commands:
-      - echo Post build actions...
-      - /home/zap/ZAP_2_10_0/zap-cli report -o zap-report.html -f html
+        - echo Running build script...
+        - cd frontend
+        - npm run build
+     
 artifacts:
+  # include all files required to run the application
   files:
     - backend/**/*
     - frontend/dist/**/*
@@ -44,4 +33,3 @@ artifacts:
     - frontend/package.json
     - appspec.yml
     - scripts/**/*
-    - zap-report.html

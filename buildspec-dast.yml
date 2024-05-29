@@ -2,15 +2,19 @@ version: 0.2
 
 env:
   secrets-manager:
-  #AI Bot
     API_KEY: "arn:aws:secretsmanager:us-east-2:339713008336:secret:prof/EBEREGIT/app-2aG1t8"
 
 phases:
   install:
     runtime-versions:
       nodejs: 20
-      java: corretto8
     commands:
+      - echo Installing dependencies...
+      - cd frontend
+      - npm install
+      - cd ../backend
+      - npm install
+      - cd ..
       - echo Installing OWASP ZAP...
       - wget https://github.com/zaproxy/zaproxy/releases/download/v2.10.0/ZAP_2_10_0_unix.sh
       - chmod +x ZAP_2_10_0_unix.sh
@@ -21,6 +25,10 @@ phases:
       - /home/zap/ZAP_2_10_0/zap.sh -daemon -config api.disablekey=true
   build:
     commands:
+      - echo Running build script...
+      - cd frontend
+      - npm run build
+      - cd ..
       - echo Running OWASP ZAP scan...
       - /home/zap/ZAP_2_10_0/zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' http://your-application-url
   post_build:
@@ -29,4 +37,11 @@ phases:
       - /home/zap/ZAP_2_10_0/zap-cli report -o zap-report.html -f html
 artifacts:
   files:
+    - backend/**/*
+    - frontend/dist/**/*
+    - frontend/public/**/*
+    - frontend/src/**/*
+    - frontend/package.json
+    - appspec.yml
+    - scripts/**/*
     - zap-report.html
