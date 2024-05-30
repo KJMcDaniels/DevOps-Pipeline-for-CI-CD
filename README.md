@@ -1,9 +1,23 @@
 # TKH-Phase 3 Capstone
+## Authors
+
+- Team Lead: KJ McDaniels([@KJMcDaniels](https://github.com/KJMcDaniels))
+- Project Manager: Luz Ritacco ([@luzritacco](luzyritacco23@outlook.com))
+- Zedd Chisholm ([@zchisholm](https://github.com/zchisholm))
+- Opeyemi Olaleye ([@Op-Design](https://github.com/Op-Design))
+- Yonisbel Soto ([@Yonisbel](https://github.com/Yonisbel))
+##
+
+<h1 align="center">Team Name & Logo </h1>
+<p align="center">
+    <img src="https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/assets/151267325/a330631b-e6d2-4ae8-b8c8-950f86cb36f4cfc6ffdabb6=true" alt="Sublime's custom image" />
+</p>
+
+#
 # Building a Secure DevOps Pipeline for Continuous Integration and Continuous Delivery (CI/CD) in AWS
 <p align="center">
     <img src="https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/assets/151267325/a843462b-02c8-4365-ba0b-2de02e6b487cfc6ffdabb6=true" alt="Sublime's custom image" />
 </p>
-
 
 
 [**The Knowledge House**](https://www.linkedin.com/school/theknowledgehouse/) Cybersecurity Fellowship's Phase 3 marks a vital stage in the journey of innovation and collaboration. It is a stage where the convergence of diverse talents and minds transcends the ordinary, fostering an environment where collective creativity thrives. This phase represents not merely a privilege but a cornerstone that solidifies the foundation of teamwork, empowering fellows to harness the power of unity in crafting impactful solutions. It stands as a testament to the belief that when a group of dedicated individuals unite, the potential for transformative change becomes limitless. The Knowledge House exemplifies an unwavering commitment to guiding fellows through a transformative process, equipping them with the skills and mindset necessary to thrive in the tech industry and beyond.
@@ -21,15 +35,8 @@ The key objective is to successfully implement a chatbot development workflow th
 | 4  | [Documentation] |
 | 5  | [Documentation] |
 | 6  | [Documentation]  |
-## Authors
 
-- Team Lead: KJ McDaniels([@KJMcDaniels](https://github.com/KJMcDaniels))
-- Project Manager: Luz Ritacco ([@luzritacco](luzyritacco23@outlook.com))
-- Zedd Chisholm ([@zchisholm](https://github.com/zchisholm))
-- Opeyemi Olaleye ([@Op-Design](https://github.com/Op-Design))
-- Yonisbel Soto ([@Yonisbel](https://github.com/Yonisbel))
-##
-
+#
 
 
   ![Screenshot 2024-05-27 003153](https://github.com/luzritacco/Capstone/assets/151267325/9694dc0b-2f4e-4078-bfce-f30ced83caf6)
