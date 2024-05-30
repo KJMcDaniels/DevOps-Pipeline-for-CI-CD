@@ -10,12 +10,12 @@ The key objective is to successfully implement a chatbot development workflow th
 
 | Sprint  | Deliverables |
 | ------------- | ------------- |
-| 1  |[documentation](https://drive.google.com/drive/folders/1Ml1jUuZwh5hs8ICMRKJdI92ciLsBzDEO)  |
-| 2  |[documentation](https://drive.google.com/drive/folders/1Ml1jUuZwh5hs8ICMRKJdI92ciLsBzDEO)  |
-| 3  | [documentation](https://drive.google.com/drive/home)  |
-| 4  | [documentation] |
-| 5  | [documentation] |
-| 6  | [documentation]  |
+| 1  |[Documentation](https://drive.google.com/drive/folders/1Ml1jUuZwh5hs8ICMRKJdI92ciLsBzDEO)  |
+| 2  |[Documentation](https://drive.google.com/drive/folders/1Ml1jUuZwh5hs8ICMRKJdI92ciLsBzDEO)  |
+| 3  | [Documentation](https://drive.google.com/drive/home)  |
+| 4  | [Documentation] |
+| 5  | [Documentation] |
+| 6  | [Documentation]  |
 ## Authors
 
 - Team Lead: KJ McDaniels([@KJMcDaniels](https://github.com/KJMcDaniels))
