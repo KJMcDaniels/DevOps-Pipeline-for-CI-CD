@@ -19,6 +19,8 @@ phases:
       - export PATH=$JAVA_HOME/bin:$PATH
       - java -version
       - echo Installing dependencies...
+      - pwd
+      - ls -a
       - cd frontend
       - npm install
       - cd ../backend
@@ -46,11 +48,11 @@ phases:
       - echo Starting OWASP ZAP...
       - /home/zap/ZAP_2_15_0/zap.sh -daemon -host 0.0.0.0 -port 8080 -config api.disablekey=true &
       - echo Waiting for ZAP to start...
-      - sleep 30
+      - sleep 120
   build:
     commands:
       - echo Running OWASP ZAP scan...
-      - /home/zap/ZAP_2_15_0/zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' http://127.0.0.1:3000
+      - /home/zap/ZAP_2_15_0/zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' http://localhost:3000
   post_build:
     commands:
       - echo Post build actions...
