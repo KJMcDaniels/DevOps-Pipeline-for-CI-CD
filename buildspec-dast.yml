@@ -7,8 +7,17 @@ env:
 phases:
   install:
     runtime-versions:
+     java: corretto17
       nodejs: 20
-    commands:
+      commands:
+      - echo "Installing dependencies..."
+      - apt-get update
+      - apt-get install -y openjdk-17-jdk
+      - update-alternatives --install /usr/bin/java java /usr/lib/jvm/java-17-openjdk-amd64/bin/java 1
+      - update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+      - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+      - export PATH=$JAVA_HOME/bin:$PATH
+      - java -version
       - echo Installing dependencies...
       - cd frontend
       - npm install
