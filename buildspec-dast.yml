@@ -27,13 +27,12 @@ phases:
       - echo Installing OWASP ZAP...
       - wget https://github.com/zaproxy/zaproxy/releases/download/v2.15.0/ZAP_2_15_0_unix.sh
       - chmod +x ZAP_2_15_0_unix.sh
-      - ./ZAP_2_15_0_unix.sh -q -dir /home/zap
+      - ./ZAP_2_15_0_unix.sh -q -dir /home/zap/ZAP_2_15_0
       - echo Verifying OWASP ZAP installation...
       - pwd
       - ls -la /home
       - ls -la /home/zap
       - ls -R /home/zap/ZAP_2_15_0
-      - find /home/zap -name zap.sh
   pre_build:
     commands:
       - echo Starting OWASP ZAP...
