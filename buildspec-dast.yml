@@ -20,6 +20,9 @@ phases:
       - chmod +x ZAP_2_15_0_unix.sh
       - ./ZAP_2_15_0_unix.sh -q -dir /home/zap
       - echo Verifying OWASP ZAP installation...
+      - pwd
+      - ls -la /home
+      - ls -la /home/zap
       - ls -R /home/zap/ZAP_2_15_0
       - find /home/zap -name zap.sh
   pre_build:
