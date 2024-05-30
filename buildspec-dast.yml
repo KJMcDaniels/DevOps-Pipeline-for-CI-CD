@@ -29,21 +29,10 @@ phases:
       - chmod +x ZAP_2_15_0_unix.sh
       - ./ZAP_2_15_0_unix.sh -q -dir /home/zap/ZAP_2_15_0
       - echo Verifying OWASP ZAP installation...
+      - ls -la /home/zap
       - ls -R /home/zap/ZAP_2_15_0
   pre_build:
     commands:
-      - echo Starting OWASP ZAP...
-      - /home/zap/ZAP_2_15_0/zap.sh -daemon -host 0.0.0.0 -port 8080 -config api.disablekey=true
-      - echo Waiting for ZAP to start...
-      - sleep 30
-      - echo ZAP process status...
-      - ps aux | grep zap
-  build:
-    commands:
-      - echo Running build script...
-      - cd frontend
-      - npm run build
-      - cd ..
       - echo Starting backend server...
       - cd backend
       - npm start &
@@ -54,6 +43,12 @@ phases:
       - cd ..
       - echo Waiting for the application to start...
       - sleep 30
+      - echo Starting OWASP ZAP...
+      - /home/zap/ZAP_2_15_0/zap.sh -daemon -host 0.0.0.0 -port 8080 -config api.disablekey=true
+      - echo Waiting for ZAP to start...
+      - sleep 30
+  build:
+    commands:
       - echo Running OWASP ZAP scan...
       - /home/zap/ZAP_2_15_0/zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' http://localhost:3000
   post_build:
