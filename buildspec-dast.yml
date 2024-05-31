@@ -37,7 +37,7 @@ phases:
       - cd ..
       - echo Waiting for the application to start...
       - sleep 60
-   build:
+  build:
     commands:
       - echo Pulling OWASP ZAP Docker image...
       - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
