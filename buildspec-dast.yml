@@ -46,11 +46,11 @@ phases:
       - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
       - docker pull zaproxy/zap-weekly
       - echo Running OWASP ZAP scan...
-      - docker network rm zap-network || true  # Remove existing network if it exists
+      - docker network rm zap-network || true  
       - docker network create zap-network
-      - docker rm -f zap-app || true  # Force remove existing container if it exists
+      - docker rm -f zap-app || true  
       - echo "Setting permissions for ZAP work directory..."
-      - chmod -R 777 $(pwd)  # Ensure the work directory is writable
+      - chmod -R 777 $(pwd)  
       - echo "Starting ZAP container..."
       - docker run -d --name zap-app --network zap-network -v $(pwd):/zap/wrk:rw --network-alias app zaproxy/zap-weekly
       - echo "Running ZAP full scan..."
