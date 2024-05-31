@@ -33,21 +33,21 @@ phases:
       - cd ..
       - echo Starting frontend server...
       - cd frontend
-      - nohup npm start &
+      - nohup npm run build &
       - cd ..
       - echo Waiting for the application to start...
       - sleep 60
-  build:
+   build:
     commands:
       - echo Pulling OWASP ZAP Docker image...
       - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
-      - docker pull owasp/zap2docker-stable
+      - docker pull owasp/zap2docker-weekly
       - echo Running OWASP ZAP scan...
-      - docker run -v $(pwd):/zap/wrk:rw --network="host" owasp/zap2docker-stable zap-full-scan.py -t http://localhost:3000 -r zap-report.html
+      - docker run -v $(pwd):/zap/wrk:rw --network="host" owasp/zap2docker-weekly zap-full-scan.py -t http://localhost:3000 -r zap-report.html
   post_build:
     commands:
       - echo Copying ZAP report...
-      - cp zap-report.html /home/zap/zap-report.html
+      - cp zap-report.html ./zap-report.html
 artifacts:
   files:
     - backend/**/*
