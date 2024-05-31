@@ -1,0 +1,72 @@
+version: 0.2
+
+env:
+  secrets-manager:
+    API_KEY: "arn:aws:secretsmanager:us-east-2:339713008336:secret:prof/EBEREGIT/app-2aG1t8"
+    DOCKER_USER: "arn:aws:secretsmanager:us-east-2:339713008336:secret:qa/AIBot/Docker-zxU2EX:DOCKER_USER"
+    DOCKER_PASSWORD: "arn:aws:secretsmanager:us-east-2:339713008336:secret:qa/AIBot/Docker-zxU2EX:DOCKER_PASSWORD"
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - echo "Installing dependencies..."
+      - apt-get update
+      - apt-get install -y openjdk-17-jdk
+      - update-alternatives --install /usr/bin/java java /usr/lib/jvm/java-17-openjdk-amd64/bin/java 1
+      - update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+      - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+      - export PATH=$JAVA_HOME/bin:$PATH
+      - java -version
+      - echo Installing npm dependencies...
+      - cd frontend
+      - npm install
+      - cd ../backend
+      - npm install
+      - cd ..
+  pre_build:
+    commands:
+      - echo Starting backend server...
+      - cd backend
+      - nohup node index.js &
+      - cd ..
+      - echo Starting frontend server...
+      - cd frontend
+      - nohup npm run build
+      - nohup npm start -- --port 4173 &
+      - cd ..
+      - echo Waiting for the application to start...
+      - sleep 10
+      - echo Checking if the application is running...
+      - until curl -s http://localhost:4173; do echo Waiting for the application to be accessible...; sleep 5; done
+  build:
+    commands:
+      - echo Pulling OWASP ZAP Docker image...
+      - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
+      - docker pull zaproxy/zap-weekly
+      - echo Running OWASP ZAP scan...
+      - docker network rm zap-network || true  
+      - docker network create zap-network
+      - docker rm -f zap-app || true  
+      - echo "Setting permissions for ZAP work directory..."
+      - chmod -R 777 $(pwd)  
+      - echo "Starting ZAP container..."
+      - docker run -d --name zap-app --network zap-network -v $(pwd):/zap/wrk:rw --network-alias app zaproxy/zap-weekly
+      - echo "Running ZAP full scan..."
+      - docker run --network zap-network -v $(pwd):/zap/wrk:rw zaproxy/zap-weekly zap-full-scan.py -t http://app:4173 -r /zap/wrk/zap-report.html
+
+  post_build:
+    commands:
+      - echo "Uploading reports to S3..."
+      - aws s3 cp zap-report.html s3://cod-devsecops-ai-bot-reports/zap-report.html
+artifacts:
+  files:
+    - backend/**/*
+    - frontend/dist/**/*
+    - frontend/public/**/*
+    - frontend/src/**/*
+    - frontend/package.json
+    - appspec.yml
+    - scripts/**/*
+    - zap-report.html
