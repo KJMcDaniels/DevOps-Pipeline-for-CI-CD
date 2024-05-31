@@ -30,9 +30,8 @@ phases:
       - wget https://github.com/zaproxy/zaproxy/releases/download/v2.15.0/ZAP_2_15_0_unix.sh
       - chmod +x ZAP_2_15_0_unix.sh
       - ./ZAP_2_15_0_unix.sh -q -dir /home/zap/ZAP_2_15_0
-      - echo Downloading OWASP ZAP Automation Framework scripts...
-      - wget https://github.com/zaproxy/zap-extensions/releases/download/automation/latest/automation-framework.zip -O /home/zap/automation-framework.zip
-      - unzip /home/zap/automation-framework.zip -d /home/zap/automation-framework
+      - echo Downloading OWASP ZAP Automation Framework...
+      - wget https://raw.githubusercontent.com/zaproxy/zap-extensions/main/addOns/automation/src/main/resources/automation.yaml -O /home/zap/automation.yaml
       - echo Verifying OWASP ZAP installation...
       - ls -la /home/zap
       - ls -R /home/zap/ZAP_2_15_0
@@ -58,7 +57,7 @@ phases:
     commands:
       - echo Creating ZAP Automation config file...
       - >
-        cat <<EOT > /home/zap/zap-config.yaml
+        cat <<EOT > /home/zap/config.yaml
         parameters:
           apiKey: ""
         env:
@@ -74,7 +73,7 @@ phases:
             maxDuration: 5
         EOT
       - echo Running OWASP ZAP Automation Framework...
-      - zap-automation -config /home/zap/zap-config.yaml
+      - zap-automation -config /home/zap/config.yaml
   post_build:
     commands:
       - echo Post build actions...
