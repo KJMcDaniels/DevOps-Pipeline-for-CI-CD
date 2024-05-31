@@ -58,7 +58,7 @@ phases:
   post_build:
     commands:
       - echo Copying ZAP report...
-      - cp zap-report.html ./zap-report.html
+      - cp /zap/wrk/zap-report.html .
 artifacts:
   files:
     - backend/**/*
@@ -68,4 +68,4 @@ artifacts:
     - frontend/package.json
     - appspec.yml
     - scripts/**/*
-    - /home/zap/zap-report.html
+    - zap-report.html
