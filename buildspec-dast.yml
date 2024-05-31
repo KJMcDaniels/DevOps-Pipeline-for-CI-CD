@@ -12,7 +12,7 @@ phases:
     commands:
       - echo "Installing dependencies..."
       - apt-get update
-      - apt-get install -y openjdk-17-jdk
+      - apt-get install -y openjdk-17-jdk python3-pip
       - update-alternatives --install /usr/bin/java java /usr/lib/jvm/java-17-openjdk-amd64/bin/java 1
       - update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
       - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
@@ -30,6 +30,8 @@ phases:
       - wget https://github.com/zaproxy/zaproxy/releases/download/v2.15.0/ZAP_2_15_0_unix.sh
       - chmod +x ZAP_2_15_0_unix.sh
       - ./ZAP_2_15_0_unix.sh -q -dir /home/zap/ZAP_2_15_0
+      - echo Installing OWASP ZAP Automation Framework...
+      - pip3 install zap-automation
       - echo Verifying OWASP ZAP installation...
       - ls -la /home/zap
       - ls -R /home/zap/ZAP_2_15_0
@@ -44,20 +46,39 @@ phases:
       - npm start &
       - cd ..
       - echo Waiting for the application to start...
-      - sleep 45
+      - sleep 60  # Increased wait time to ensure the application is fully started
       - echo Starting OWASP ZAP...
       - /home/zap/ZAP_2_15_0/zap.sh -daemon -host 0.0.0.0 -port 8080 -config api.disablekey=true &
       - echo Waiting for ZAP to start...
-      - sleep 120
-      - ls -a /home/zap/ZAP_2_15_0
+      - sleep 60  # Ensuring ZAP is fully started
+      - echo Verifying OWASP ZAP process...
+      - ps aux | grep zap
   build:
     commands:
-      - echo Running OWASP ZAP scan...
-      - /home/zap/ZAP_2_15_0/zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' http://localhost:3000
+      - echo Creating ZAP Automation config file...
+      - >
+        cat <<EOT > /home/zap/zap-config.yaml
+        parameters:
+          apiKey: ""
+        env:
+          contexts:
+            - name: default
+              url: "http://localhost:3000"
+        jobs:
+          - type: spider
+            context: default
+            maxDuration: 5
+          - type: scan
+            context: default
+            maxDuration: 5
+        EOT
+      - echo Running OWASP ZAP Automation Framework...
+      - zap-automation -config /home/zap/zap-config.yaml
   post_build:
     commands:
       - echo Post build actions...
-      - /home/zap/ZAP_2_15_0/zap-cli report -o /home/zap/zap-report.html -f html
+      - echo Copying ZAP report...
+      - cp /root/.ZAP/reports/zap-report.html /home/zap/zap-report.html
 artifacts:
   files:
     - backend/**/*
