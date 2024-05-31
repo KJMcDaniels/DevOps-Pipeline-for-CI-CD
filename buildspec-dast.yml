@@ -49,10 +49,8 @@ phases:
       - docker network rm zap-network || true  # Remove existing network if it exists
       - docker network create zap-network
       - docker run -d --name zap-app --network zap-network -v $(pwd):/zap/wrk:rw --network-alias app zaproxy/zap-weekly
-      - docker run --network zap-network -v $(pwd):/zap/wrk:rw zaproxy/zap-weekly zap-full-scan.py -t http://app:4173 -r zap-report.html
-      - docker stop zap-app
-      - docker rm zap-app
-      - docker network rm zap-network
+      - echo "Running ZAP container in interactive mode for debugging..."
+      - docker run --network zap-network -v $(pwd):/zap/wrk:rw -it zaproxy/zap-weekly /bin/bash | zap-full-scan.py -t http://app:4173 -r zap-report.html
   post_build:
     commands:
       - echo Copying ZAP report...
