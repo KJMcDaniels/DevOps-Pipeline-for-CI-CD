@@ -46,8 +46,9 @@ phases:
       - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
       - docker pull zaproxy/zap-weekly
       - echo Running OWASP ZAP scan...
+      - docker network rm zap-network || true  # Remove existing network if it exists
       - docker network create zap-network
-      - docker run -d --name zap-app --network zap-network zaproxy/zap-weekly
+      - docker run -d --name zap-app --network zap-network -v $(pwd):/zap/wrk:rw --network-alias app zaproxy/zap-weekly
       - docker run --network zap-network -v $(pwd):/zap/wrk:rw zaproxy/zap-weekly zap-full-scan.py -t http://app:4173 -r zap-report.html
       - docker stop zap-app
       - docker rm zap-app
