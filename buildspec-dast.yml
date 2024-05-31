@@ -30,8 +30,9 @@ phases:
       - wget https://github.com/zaproxy/zaproxy/releases/download/v2.15.0/ZAP_2_15_0_unix.sh
       - chmod +x ZAP_2_15_0_unix.sh
       - ./ZAP_2_15_0_unix.sh -q -dir /home/zap/ZAP_2_15_0
-      - echo Installing OWASP ZAP Automation Framework...
-      - pip3 install zap-automation
+      - echo Downloading OWASP ZAP Automation Framework scripts...
+      - wget https://github.com/zaproxy/zap-extensions/releases/download/automation/latest/automation-framework.zip -O /home/zap/automation-framework.zip
+      - unzip /home/zap/automation-framework.zip -d /home/zap/automation-framework
       - echo Verifying OWASP ZAP installation...
       - ls -la /home/zap
       - ls -R /home/zap/ZAP_2_15_0
