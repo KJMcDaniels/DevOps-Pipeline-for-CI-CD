@@ -33,10 +33,12 @@ phases:
       - cd ..
       - echo Starting frontend server...
       - cd frontend
-      - nohup npm run build &
+      - nohup npm start &
       - cd ..
       - echo Waiting for the application to start...
-      - sleep 60
+      - sleep 120
+      - echo Checking if the application is running...
+      - curl http://localhost:3000
   build:
     commands:
       - echo Pulling OWASP ZAP Docker image...
