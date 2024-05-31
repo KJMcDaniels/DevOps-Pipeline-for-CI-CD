@@ -49,14 +49,12 @@ phases:
       - docker network rm zap-network || true  # Remove existing network if it exists
       - docker network create zap-network
       - docker rm -f zap-app || true  # Force remove existing container if it exists
+      - echo "Setting permissions for ZAP work directory..."
+      - chmod -R 777 $(pwd)  # Ensure the work directory is writable
       - echo "Starting ZAP container..."
       - docker run -d --name zap-app --network zap-network -v $(pwd):/zap/wrk:rw --network-alias app zaproxy/zap-weekly
       - echo "Running ZAP full scan..."
       - docker run --network zap-network -v $(pwd):/zap/wrk:rw zaproxy/zap-weekly zap-full-scan.py -t http://app:4173 -r /zap/wrk/zap-report.html
-      - echo "Stopping and removing ZAP container..."
-      - docker stop zap-app
-      - docker rm zap-app
-      - docker network rm zap-network
   post_build:
     commands:
       - echo Copying ZAP report...
