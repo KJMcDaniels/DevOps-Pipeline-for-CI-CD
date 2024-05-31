@@ -3,6 +3,8 @@ version: 0.2
 env:
   secrets-manager:
     API_KEY: "arn:aws:secretsmanager:us-east-2:339713008336:secret:prof/EBEREGIT/app-2aG1t8"
+    DOCKER-USER: "arn:aws:secretsmanager:us-east-2:339713008336:secret:qa/AIBot/Docker-zxU2EX:DOCKER-USER"
+    DOCKER-PASSWORD: "arn:aws:secretsmanager:us-east-2:339713008336:secret:qa/AIBot/Docker-zxU2EX:DOCKER-PASSWORD"
 
 phases:
   install:
@@ -31,13 +33,14 @@ phases:
       - cd ..
       - echo Starting frontend server...
       - cd frontend
-      - nohup npm start &
+      - nohup npm run build &
       - cd ..
       - echo Waiting for the application to start...
       - sleep 60
   build:
     commands:
       - echo Pulling OWASP ZAP Docker image...
+      - docker login -u $DOCKER-USER -p $DOCKER-PASSWORD
       - docker pull owasp/zap2docker-stable
       - echo Running OWASP ZAP scan...
       - docker run -v $(pwd):/zap/wrk:rw --network="host" owasp/zap2docker-stable zap-full-scan.py -t http://localhost:3000 -r zap-report.html
