@@ -8,7 +8,6 @@ phases:
   install:
     runtime-versions:
       nodejs: 20
-      docker: 19
     commands:
       - echo "Installing dependencies..."
       - apt-get update
