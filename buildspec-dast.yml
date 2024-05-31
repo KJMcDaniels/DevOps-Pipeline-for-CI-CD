@@ -33,19 +33,20 @@ phases:
       - cd ..
       - echo Starting frontend server...
       - cd frontend
-      - nohup npm start -- --port 3000 &
+      - nohup npm run build
+      - nohup npm start -- --port 4173 &
       - cd ..
       - echo Waiting for the application to start...
       - sleep 120
       - echo Checking if the application is running...
-      - curl http://localhost:3000  # Add a simple check to see if the application is accessible
+      - curl http://localhost:4173  # Add a simple check to see if the application is accessible
   build:
     commands:
       - echo Pulling OWASP ZAP Docker image...
       - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
       - docker pull zaproxy/zap-weekly
       - echo Running OWASP ZAP scan...
-      - docker run -v $(pwd):/zap/wrk:rw --network="host" zaproxy/zap-weekly zap-full-scan.py -t http://localhost:3000 -r zap-report.html
+      - docker run -v $(pwd):/zap/wrk:rw --network="host" zaproxy/zap-weekly zap-full-scan.py -t http://localhost:4173 -r zap-report.html
   post_build:
     commands:
       - echo Copying ZAP report...
