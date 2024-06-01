@@ -29,7 +29,7 @@ The key objective is to successfully implement a chatbot development workflow th
 
 | Sprint  | Deliverables |
 | ------------- | ------------- |
-| 1  |[Documentation](https://drive.google.com/drive/folders/1Ml1jUuZwh5hs8ICMRKJdI92ciLsBzDEO)  |
+| 1  |[Documentation](https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/commit/6380be34b8103f918e9be4fb2122aaabe0f1acbc#diff-35dd9b5599ca2d7267731e7d4b0486bd5cec2c8874c7ef391d7cad0099fb35f1)  |
 | 2  |[Documentation](https://drive.google.com/drive/folders/1Ml1jUuZwh5hs8ICMRKJdI92ciLsBzDEO)  |
 | 3  | [Documentation](https://drive.google.com/drive/home)  |
 | 4  | [Documentation] |
