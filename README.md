@@ -2,7 +2,7 @@
 ## Authors
 
 - **Team Lead**: KJ McDaniels([@KJMcDaniels](https://github.com/KJMcDaniels))
-- **Project Manager**: Luz Ritacco ([@luzritacco](luzyritacco23@outlook.com))
+- **Project Manager**: Luz Ritacco ([@luzritacco](https://github.com/luzritacco))
 - **DevOps Engineer**: Zedd Chisholm ([@zchisholm](https://github.com/zchisholm))
 - **DevOps Engineer**: Opeyemi Olaleye ([@Op-Design](https://github.com/Op-Design))
 - **Security Engineer**: Yonisbel Soto ([@Yonisbel](https://github.com/Yonisbel))
