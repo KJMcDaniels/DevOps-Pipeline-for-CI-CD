@@ -1,11 +1,11 @@
 # TKH-Phase 3 Capstone
 ## Authors
 
-- Team Lead: KJ McDaniels([@KJMcDaniels](https://github.com/KJMcDaniels))
-- Project Manager: Luz Ritacco ([@luzritacco](luzyritacco23@outlook.com))
-- Zedd Chisholm ([@zchisholm](https://github.com/zchisholm))
-- Opeyemi Olaleye ([@Op-Design](https://github.com/Op-Design))
-- Yonisbel Soto ([@Yonisbel](https://github.com/Yonisbel))
+- **Team Lead**: KJ McDaniels([@KJMcDaniels](https://github.com/KJMcDaniels))
+- **Project Manager**: Luz Ritacco ([@luzritacco](luzyritacco23@outlook.com))
+- **DevOps Engineer**: Zedd Chisholm ([@zchisholm](https://github.com/zchisholm))
+- **DevOps Engineer**: Opeyemi Olaleye ([@Op-Design](https://github.com/Op-Design))
+- **Security Engineer**: Yonisbel Soto ([@Yonisbel](https://github.com/Yonisbel))
 ##
 
 <h1 align="center">Team Name & Logo </h1>
