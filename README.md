@@ -1,4 +1,4 @@
-# TKH-Phase 3 Capstone
+# TKH-Phase 3 Capstone Project
 ## Authors
 
 - **Team Lead**: KJ McDaniels([@KJMcDaniels](https://github.com/KJMcDaniels))
