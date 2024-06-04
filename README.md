@@ -37,7 +37,21 @@ The key objective is to successfully implement a chatbot development workflow th
 | 6  | [Documentation]  |
 
 #
+ <h1 align="center">Technical Skills </h1>
+ Here’s a table outlining the key tools and technical skills used for managing and implementing the project, especially focusing on the DevOps pipeline and CI/CD practices in AWS.
 
+
+ 
+| Tools | Description |
+| ------------- | ------------- |
+| Management   | Jira, Google Drive, Slack, Zoom  |
+| Code  |GitHub/Git  |
+| Build| AWS CodeBuild |
+| Test  | SonarQube, OWASP ZAP |
+| Realease  | AWS CodePipeline |
+| Deploy |AWS CodeDeploy  |
+| Operate  | AWS CloudWatch  |
+| Monitor| AWS CloudWatch, Aws cloudTrail |
 
   ![Screenshot 2024-05-27 003153](https://github.com/luzritacco/Capstone/assets/151267325/9694dc0b-2f4e-4078-bfce-f30ced83caf6)
   
