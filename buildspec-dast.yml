@@ -54,7 +54,7 @@ phases:
       - echo "Starting ZAP container..."
       - docker run -d --name zap-app --network zap-network -v $(pwd):/zap/wrk:rw --network-alias app zaproxy/zap-weekly
       - echo "Running ZAP full scan..."
-      - docker run --network zap-network -v $(pwd):/zap/wrk:rw zaproxy/zap-weekly zap-full-scan.py -t http://app:4173 -r /zap/wrk/zap-report.html
+      - docker run --network zap-network -v $(pwd):/zap/wrk:rw zaproxy/zap-weekly zap-full-scan.py -t http://app:8000 -r /zap/wrk/zap-report.html
 
   post_build:
     commands:
@@ -62,11 +62,4 @@ phases:
       - aws s3 cp zap-report.html s3://cod-devsecops-ai-bot-reports/zap-report.html
 artifacts:
   files:
-    - backend/**/*
-    - frontend/dist/**/*
-    - frontend/public/**/*
-    - frontend/src/**/*
-    - frontend/package.json
-    - appspec.yml
-    - scripts/**/*
     - zap-report.html
