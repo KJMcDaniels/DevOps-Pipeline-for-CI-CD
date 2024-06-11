@@ -34,12 +34,12 @@ phases:
       - echo Starting frontend server...
       - cd frontend
       - nohup npm run build
-      - nohup npm start -- --port 4173 &
+      - nohup npm start -- --port 8000 &
       - cd ..
       - echo Waiting for the application to start...
       - sleep 10
       - echo Checking if the application is running...
-      - until curl -s http://localhost:4173; do echo Waiting for the application to be accessible...; sleep 5; done
+      - until curl -s http://localhost:8000; do echo Waiting for the application to be accessible...; sleep 5; done
   build:
     commands:
       - echo Pulling OWASP ZAP Docker image...
