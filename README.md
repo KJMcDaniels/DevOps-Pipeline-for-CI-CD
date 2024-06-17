@@ -32,7 +32,7 @@ The key objective is to successfully implement a chatbot development workflow th
 | 1  |[Documentation](https://drive.google.com/file/d/1XHVKkAlubpYd0SIljmJ1kb8xy68s0JCg/view?usp=sharing)  |
 | 2  |[Documentation](https://drive.google.com/file/d/1u0tg3eOMeH9ojksxY-yLwsHJHtmuVay4/view?usp=sharing)  |
 | 3  | [Documentation](https://drive.google.com/file/d/1Lb4RTDtAjBhsOIt_S83SsfdafJH157vQ/view?usp=sharing)  |
-| 4  | [Documentation] |
+| 4  | [Documentation](https://drive.google.com/file/d/1dEneyfyoRUeX532jEYz5wzHEmz4yT4jQ/view) |
 | 5  | [Documentation] |
 | 6  | [Documentation]  |
 
