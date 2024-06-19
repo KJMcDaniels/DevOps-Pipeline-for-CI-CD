@@ -1,0 +1,35 @@
+name: GitGuardian Scan
+
+on:
+  push:
+    branches:
+      - main  # Adjust the branch name as needed
+  pull_request:
+    branches:
+      - main  # Adjust the branch name as needed
+
+jobs:
+  gitguardian_scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install GitGuardian CLI
+        run: pip install ggshield
+
+      - name: Authenticate GitGuardian
+        env:
+          GITGUARDIAN_API_KEY: ${{ secrets.GITGUARDIAN_API_KEY }}
+        run: echo $GITGUARDIAN_API_KEY | ggshield auth login
+
+      - name: Run GitGuardian scan
+        run: ggshield scan repo .
+
+      - name: Show scan results
+        run: cat ggshield-results.json  # Optional: Output scan results
