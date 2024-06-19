@@ -1,0 +1,20 @@
+# Use an official Node runtime as a parent image
+FROM node:20
+
+# Create app directory
+WORKDIR /app
+
+# Install app dependencies by copying
+# package.json and package-lock.json only
+COPY backend/package*.json ./
+
+RUN npm install
+
+# Bundle app source
+COPY backend/ .
+
+# Your app binds to port 8000 so you use the EXPOSE instruction
+EXPOSE 8000
+
+# Define command to run the app
+CMD ["node", "index.js"]
