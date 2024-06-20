@@ -25,11 +25,8 @@ jobs:
 
       - name: Authenticate GitGuardian
         env:
-          GITGUARDIAN_API_KEY: ${{66ab4B9addd0b7d3cb7bbaAaacbBffe7dB76aBab63CfEDBBa9bF96A936467BF98cd7AcF}}
-        run: echo $66ab4B9addd0b7d3cb7bbaAaacbBffe7dB76aBab63CfEDBBa9bF96A936467BF98cd7AcF | ggshield auth login
+          GITGUARDIAN_API_KEY: ${{ secrets.GITGUARDIAN_API_KEY }}
+        run: echo $GITGUARDIAN_API_KEY | ggshield auth login
 
       - name: Run GitGuardian scan
-        run: ggshield scan repo .
-
-      - name: Show scan results
-        run: cat ggshield-results.json  # Optional: Output scan results
+        run: ggshield secret scan --all
