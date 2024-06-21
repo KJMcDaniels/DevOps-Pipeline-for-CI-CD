@@ -44,7 +44,7 @@ The key objective is to successfully implement a chatbot development workflow th
  
 | Tools | Description |
 | ------------- | ------------- |
-| Management   | [Jira, Google Drive, Slack, Zoom](https://community.atlassian.com/t5/Jira-articles/What-is-Jira-Software-and-why-use-it/ba-p/2323812)  |
+| Management   | [Jira, Google Drive, Slack, Zoom](ttps://www.atlassian.com/software/jira/guides/getting-started/introduction#what-is-jira-software)  |
 | Code  |[GitHub/Git](https://docs.github.com/en/get-started/start-your-journey/about-github-and-git)  |
 | Build| [AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/welcome.html) |
 | Test  | [SonarQube, OWASP ZAP](https://github.com/pdsoftplan/sonar-zap) |
