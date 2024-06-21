@@ -34,7 +34,7 @@ The key objective is to successfully implement a chatbot development workflow th
 | 3  | [Documentation](https://drive.google.com/file/d/1Lb4RTDtAjBhsOIt_S83SsfdafJH157vQ/view?usp=sharing)  |
 | 4  | [Documentation](https://drive.google.com/file/d/1dEneyfyoRUeX532jEYz5wzHEmz4yT4jQ/view) |
 | 5  | [Documentation] |
-| 6  | [Documentation]  |
+
 
 #
  <h1 align="center">Technical Skills </h1>
@@ -45,13 +45,13 @@ The key objective is to successfully implement a chatbot development workflow th
 | Tools | Description |
 | ------------- | ------------- |
 | Management   | [Jira, Google Drive, Slack, Zoom](https://community.atlassian.com/t5/Jira-articles/What-is-Jira-Software-and-why-use-it/ba-p/2323812)  |
-| Code  |GitHub/Git  |
-| Build| AWS CodeBuild |
-| Test  | SonarQube, OWASP ZAP |
-| Realease  | AWS CodePipeline |
-| Deploy |AWS CodeDeploy  |
-| Operate  | AWS CloudWatch  |
-| Monitor| AWS CloudWatch, Aws cloudTrail |
+| Code  |[GitHub/Git](https://docs.github.com/en/get-started/start-your-journey/about-github-and-git)  |
+| Build| [AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/welcome.html) |
+| Test  | [SonarQube, OWASP ZAP](https://github.com/pdsoftplan/sonar-zap) |
+| Realease  | [AWS CodePipeline](https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html) |
+| Deploy |[AWS CodeDeploy](https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html)  |
+| Operate  | [AWS CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html)  |
+| Monitor| [AWS CloudWatch, Aws cloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html) |
 
   ![Screenshot 2024-05-27 003153](https://github.com/luzritacco/Capstone/assets/151267325/9694dc0b-2f4e-4078-bfce-f30ced83caf6)
   
