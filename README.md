@@ -58,7 +58,10 @@ The key objective is to successfully implement a chatbot development workflow th
   
 In our project, we employ Jira as a central tool for managing the development lifecycle of our AI Chatbot application. By organizing our tasks into clearly defined sprints, we ensure that each phase of the project is tracked and managed efficiently. This structured approach allows us to maintain visibility over progress and address issues promptly, fostering an environment of continuous improvement and accountability. Each sprint is designed to align closely with our overarching project goals, ensuring that every team member is synchronized and focused on delivering specific, measurable outcomes.
 
-<img src="https://github.com/luzritacco/Capstone/assets/151267325/d4608c10-3435-41d1-8858-7a47db63de1d" title="Jira Board"  alt="Jira Board" width=100% />
+
+<img src="https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/assets/151267325/5eebb0fe-2aa2-407e-aca1-8ec16e520639" title="Jira Board"  alt="Jira Board" width=100% />
+
+
 
 | Sprint | Link |
 |--------|------|
