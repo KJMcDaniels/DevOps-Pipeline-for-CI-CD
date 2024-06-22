@@ -15,9 +15,12 @@
 
 #
 # Building a Secure DevOps Pipeline for Continuous Integration and Continuous Delivery (CI/CD) in AWS
+
 <p align="center">
-    <img src="https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/assets/151267325/a843462b-02c8-4365-ba0b-2de02e6b487cfc6ffdabb6=true" alt="Sublime's custom image" />
+    <img src="https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/assets/151267325/6195113e-dce9-4b1f-8cf5-06d727f09ed4=true" alt="Sublime's custom image" />
 </p>
+
+
 
 Phase 3 of [**The Knowledge House**](https://www.linkedin.com/school/theknowledgehouse/) Cybersecurity Fellowship represents a critical junction in our continuous journey of innovation and collaborative effort. As we delve into this phase, our focus sharpens on the intersection of cybersecurity, software development, and team dynamics. This period is not just an opportunity but a pivotal moment that cements the principles of teamwork and collective creativity. It is here that our fellows come together to develop impactful technological solutions, demonstrating the transformative power of unity in the tech sector.
 
