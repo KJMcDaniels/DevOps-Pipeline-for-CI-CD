@@ -31,10 +31,10 @@ The key objective is to successfully implement a chatbot development workflow th
 
 | Sprint  | Deliverables |
 | ------------- | ------------- |
-| 1  |[Documentation](https://drive.google.com/file/d/1XHVKkAlubpYd0SIljmJ1kb8xy68s0JCg/view?usp=sharing)  |
-| 2  |[Documentation](https://drive.google.com/file/d/1u0tg3eOMeH9ojksxY-yLwsHJHtmuVay4/view?usp=sharing)  |
-| 3  | [Documentation](https://drive.google.com/file/d/1Lb4RTDtAjBhsOIt_S83SsfdafJH157vQ/view?usp=sharing)  |
-| 4  | [Documentation](https://drive.google.com/file/d/1dEneyfyoRUeX532jEYz5wzHEmz4yT4jQ/view) |
+| 1  |[Documentation](https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/blob/main/docs/deliverables/Sprint-1-TKH-DevSecOps-Pipeline-Requirements.pdf)  |
+| 2  |[Documentation](https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/blob/main/docs/deliverables/Sprint-2-TKH-DevSecOps-Deliverables.pdf)  |
+| 3  | [Documentation](https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/blob/main/docs/deliverables/Sprint%203-TKH-DevSecOps.Deliverables.pdf)  |
+| 4  | [Documentation](https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/blob/main/docs/deliverables/Sprint-4-TKH-DevSecOps-Deliverables.pdf) |
 | 5  | [Documentation] |
 
 
