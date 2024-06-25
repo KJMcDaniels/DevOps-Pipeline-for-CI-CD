@@ -65,12 +65,12 @@ In our project, we employ Jira as a central tool for managing the development li
 
 | Sprint | Link |
 |--------|------|
-| Sprint 1 | [View Sprint 1](https://drive.google.com/file/d/1cAfE9Gec2ZMu2iuJbmqmXl83Ikt-I9v2/view?usp=drive_link) |
-| Sprint 2 | [View Sprint 2](https://drive.google.com/file/d/1fvgYv9761iXuqqHfDaN7ArgCLuL9N4kG/view?usp=drive_link) |
-| Sprint 3 | [View Sprint 3](https://drive.google.com/file/d/1CupvPBGb845Jw0tgifuF3NnfM7pTuwts/view?usp=drive_link) |
-| Sprint 4 | [View Sprint 4](https://drive.google.com/file/d/1eixECuMqg9HAKwFp5x8oKtnpUuj0XSB1/view?usp=drive_link) |
-| Sprint 5 | [View Sprint 5](https://drive.google.com/file/d/1osHy-G2Vv47cvXbzUpiHNAMD9PiB88Oo/view?usp=drive_link) |
-| Sprint 6 | [View Sprint 6](https://drive.google.com/file/d/1r_L4vZGw2ZRWQmLnYQjzaaUYk9vGnJFr/view?usp=drive_link) |
+| Sprint 1 | [View Sprint 1](https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/blob/main/docs/deliverables/JiraSprint1.png) |
+| Sprint 2 | [View Sprint 2](https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/blob/main/docs/deliverables/JiraSprint2.png) |
+| Sprint 3 | [View Sprint 3](https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/blob/main/docs/deliverables/JiraSprint3.png) |
+| Sprint 4 | [View Sprint 4](https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/blob/main/docs/deliverables/JiraSprint4.png) |
+| Sprint 5 | [View Sprint 5](https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/blob/main/docs/deliverables/JiraSprint5.png) |
+| Sprint 6 | [View Sprint 6](https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/blob/main/docs/deliverables/JiraSprint6.png) |
 
  #
  <h1 align="left">Team Achieved </h1>
