@@ -35,7 +35,7 @@ The key objective is to successfully implement a chatbot development workflow th
 | 2  |[Documentation](https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/blob/main/docs/deliverables/Sprint-2-TKH-DevSecOps-Deliverables.pdf)  |
 | 3  | [Documentation](https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/blob/main/docs/deliverables/Sprint%203-TKH-DevSecOps.Deliverables.pdf)  |
 | 4  | [Documentation](https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/blob/main/docs/deliverables/Sprint-4-TKH-DevSecOps-Deliverables.pdf) |
-| 5  | [Documentation] |
+| 5  | [Documentation](https://github.com/KJMcDaniels/DevOps-Pipeline-for-CI-CD/blob/main/docs/deliverables/Sprint-5-TKH-DevSecOps-COD-Deliverables.pdf) |
 
 
 # <h1 align="left">Technical Skills </h1>
